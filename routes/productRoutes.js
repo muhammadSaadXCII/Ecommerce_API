@@ -8,10 +8,11 @@ router.use(protect);
 
 router.route("/")
   .get(productController.getAllProducts)
-  .post(verifyRole, productController.createProduct)
+  .post(verifyRole, productController.createProduct);
+
+router.route("/:id")
+  .get(productController.getProductById)
   .put(verifyRole, productController.updateProduct)
   .delete(verifyRole, productController.deleteProduct);
-
-router.get("/:id", productController.getProductById);
 
 module.exports = router;
