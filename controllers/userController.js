@@ -32,7 +32,7 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = User.findOne({ email });
+        const user = await User.findOne({ email });
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (user && isMatch) {
