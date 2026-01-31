@@ -22,10 +22,12 @@ exports.protect = (req, res, next) => {
     }
 }
 
-exports.verifyRole = (req, res, next)=>{
-    const userRole = req.user.userRole;
-    if (userRole !== "Admin") {
-        return res.status(403).json({ message: "Unauthorized access" });
-    }
-    next();
+exports.verifyRole = (role = "Admin") => {
+    return (req, res, next) => {
+        const userRole = req.user.userRole;
+        if (userRole !== role) {
+            return res.status(403).json({ message: "Unauthorized access" });
+        }
+        next();
+    };
 };
