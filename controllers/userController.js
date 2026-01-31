@@ -40,7 +40,7 @@ exports.loginUser = async (req, res) => {
                 userId: user.id,
                 userEmail: user.email,
                 userRole: user.role,
-                userToken: generateJWTToken(user.id, user.email)
+                userToken: generateJWTToken(user.id, user.email, user.role)
             });
         } else {
             res.status(401).json({ message: "Invalid Credentials" });
