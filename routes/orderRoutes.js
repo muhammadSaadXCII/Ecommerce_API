@@ -7,6 +7,6 @@ const router = express.Router();
 router.use(protect);
 
 router.post("/", verifyRole("Customer"), createOrder);
-router.get("/myOrders", verifyRole("Customer"), getMyOrders);
+router.get("/my-orders", verifyRole("Customer"), getMyOrders);
 
 module.exports = router;

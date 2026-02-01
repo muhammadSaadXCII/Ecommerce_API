@@ -16,7 +16,7 @@ app.use(cors());
 app.use(rateLimiter);
 app.use(express.json());
 
-app.use("/api/users", userRoutes);
+app.use("/api/auth", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 
