@@ -7,9 +7,6 @@ const sendEmail = require("../utils/sendEmail");
 const generateJWTToken = (id, email, role) => {
     return jsonwebtoken.sign({ userId: id, userEmail: email, userRole: role }, process.env.JWT_SECRET_KEY, { expiresIn: process.env.JWT_EXPIRES_IN });
 };
-const generateEmailToken = () => {
-    return crypto.randomBytes(32).toString("hex");
-};
 
 exports.registerUser = async (req, res) => {
     try {
@@ -19,7 +16,7 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ message: "User already exists." });
         }
 
-        const emailToken = generateEmailToken();
+        const emailToken = crypto.randomBytes(32).toString("hex");
         const newUser = new User({
             name,
             email,
