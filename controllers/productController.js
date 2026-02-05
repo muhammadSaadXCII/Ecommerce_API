@@ -17,7 +17,50 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find();
+        let query = {};
+        let sort = {};
+
+        // QUERY
+        if (req.query.keyword) {
+            query.$or = [
+                { "name": { $regex: req.query.keyword, $options: "i" } },
+                { "description": { $regex: req.query.keyword, $options: "i" } },
+            ];
+        }
+        if (req.query.name) {
+            query.name = req.query.name;
+        }
+        if (req.query.category) {
+            query.category = req.query.category;
+        }
+
+        // FILTERING
+        if (req.query.minPrice || req.query.maxPrice) {
+            query.price = {};
+            if (req.query.minPrice) query.price.$gte = parseFloat(req.query.minPrice);
+            if (req.query.maxPrice) query.price.$lte = parseFloat(req.query.maxPrice);
+        }
+
+        // SORT
+        if (req.query.sortBy) {
+            let availableSorts = ["price", "stock", "createdAt"];
+            if (availableSorts.includes(req.query.sortBy)) {
+                sort[req.query.sortBy] = ((req.query.orderBy) === "desc") ? -1 : 1;
+            } else {
+                sort.createdAt = -1;
+            }
+        }
+
+        // PAGINATION
+        let page = 1;
+        let limit = undefined;
+        if (req.query.page || req.query.limit) {
+            page = parseInt(req.query.page) || 1;
+            limit = parseInt(req.query.limit) || 2;
+        }
+        const skip = (page - 1) * limit;
+
+        const products = await Product.find(query).sort(sort).skip(skip).limit(limit);
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({
