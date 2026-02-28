@@ -4,9 +4,17 @@ This is the backend API for an e-commerce platform. It provides endpoints for ma
 
 ## Installation
 
-To install the dependencies, run:
+First, clone the repository to your local machine:
 
 ```bash
+git clone https://github.com/your-username/Ecommerce_API.git
+```
+
+Then, navigate to the project directory and install the dependencies:
+
+```bash
+cd Ecommerce_API
+
 npm install
 ```
 
@@ -37,7 +45,7 @@ The following are the available API endpoints:
 ```
 /
 |-- config/
-|   |-- db.js           # Database connection configuration
+|   |-- db.js                   # Database connection configuration
 |-- controllers/
 |   |-- orderController.js      # Logic for handling order-related requests
 |   |-- productController.js    # Logic for handling product-related requests
