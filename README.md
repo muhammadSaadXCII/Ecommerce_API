@@ -32,6 +32,32 @@ The following are the available API endpoints:
 * **Product Routes:** `/api/products`
 * **Order Routes:** `/api/orders`
 
+## Folder Structure
+
+```
+/
+|-- config/
+|   |-- db.js           # Database connection configuration
+|-- controllers/
+|   |-- orderController.js      # Logic for handling order-related requests
+|   |-- productController.js    # Logic for handling product-related requests
+|   |-- userController.js       # Logic for handling user-related requests
+|-- middlewares/
+|   |-- authMiddleware.js       # Middleware for authentication
+|   |-- rateLimitMiddleware.js  # Middleware for rate limiting
+|-- models/
+|   |-- order.js                # Mongoose model for orders
+|   |-- product.js              # Mongoose model for products
+|   |-- user.js                 # Mongoose model for users
+|-- routes/
+|   |-- orderRoutes.js          # Routes for order-related endpoints
+|   |-- productRoutes.js        # Routes for product-related endpoints
+|   |-- userRoutes.js           # Routes for user-related endpoints
+|-- server.js                   # Main server file
+|-- package.json
+|-- package-lock.json
+```
+
 ## Technologies Used
 
 * **Node.js:** A JavaScript runtime environment that allows running JavaScript on the server.
