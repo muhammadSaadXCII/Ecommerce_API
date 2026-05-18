@@ -7,7 +7,7 @@ This is the backend API for an e-commerce platform. It provides endpoints for ma
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/Ecommerce_API.git
+git clone https://github.com/muhammadSaadXCII/Ecommerce_API.git
 ```
 
 Then, navigate to the project directory and install the dependencies:
